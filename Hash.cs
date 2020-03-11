@@ -5,7 +5,7 @@ namespace MD5Hash
 {
     public class Hash
     {
-        public static string HashThis(string text)
+        public static string Content(string text)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
             md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));

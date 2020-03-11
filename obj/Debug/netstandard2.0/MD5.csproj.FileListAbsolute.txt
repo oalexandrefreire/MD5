@@ -1,8 +1,0 @@
-C:\Users\Garage6\source\repos\MD5\bin\Debug\netstandard2.0\MD5.deps.json
-C:\Users\Garage6\source\repos\MD5\bin\Debug\netstandard2.0\MD5.dll
-C:\Users\Garage6\source\repos\MD5\bin\Debug\netstandard2.0\MD5.pdb
-C:\Users\Garage6\source\repos\MD5\obj\Debug\netstandard2.0\MD5.csprojAssemblyReference.cache
-C:\Users\Garage6\source\repos\MD5\obj\Debug\netstandard2.0\MD5.AssemblyInfoInputs.cache
-C:\Users\Garage6\source\repos\MD5\obj\Debug\netstandard2.0\MD5.AssemblyInfo.cs
-C:\Users\Garage6\source\repos\MD5\obj\Debug\netstandard2.0\MD5.dll
-C:\Users\Garage6\source\repos\MD5\obj\Debug\netstandard2.0\MD5.pdb

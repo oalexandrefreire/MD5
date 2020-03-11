@@ -5,20 +5,23 @@
     <Authors>Alexandre Freire</Authors>
     <Company>AF</Company>
     <PackageTags>Hash, MD5, MD5Hash, Encryptor</PackageTags>
-    <Description>Encrypt strings easily.</Description>
+    <Description>Encrypt strings easily.
+Example:
+string password = MD5Hash.Hash.Content("123");</Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <ApplicationIcon>Imagem1.ico</ApplicationIcon>
     <PackageIcon>Imagem1.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/alexandrefreiref/MD5-CSharp</RepositoryUrl>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\Downloads\license.txt">
+    <None Include="Imagem1.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\..\..\Pictures\Imagem1.png">
+    <None Include="license.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

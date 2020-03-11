@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Garage6\\source\\repos\\MD5\\MD5.csproj": {}
+    "E:\\FONTES\\OUTROS\\MD5-CSharp\\MD5.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Garage6\\source\\repos\\MD5\\MD5.csproj": {
-      "version": "1.0.0",
+    "E:\\FONTES\\OUTROS\\MD5-CSharp\\MD5.csproj": {
+      "version": "2.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Garage6\\source\\repos\\MD5\\MD5.csproj",
+        "projectUniqueName": "E:\\FONTES\\OUTROS\\MD5-CSharp\\MD5.csproj",
         "projectName": "MD5",
-        "projectPath": "C:\\Users\\Garage6\\source\\repos\\MD5\\MD5.csproj",
-        "packagesPath": "C:\\Users\\Garage6\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Garage6\\source\\repos\\MD5\\obj\\",
+        "projectPath": "E:\\FONTES\\OUTROS\\MD5-CSharp\\MD5.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "E:\\FONTES\\OUTROS\\MD5-CSharp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Garage6\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
