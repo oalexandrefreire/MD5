@@ -8,8 +8,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="file">license.txt</license>
     <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <icon>Imagem1.png</icon>
     <description>Encrypt strings easily.</description>
     <tags>Hash, MD5, MD5Hash, Encryptor</tags>
+    <repository url="https://github.com/alexandrefreiref/MD5-CSharp" />
     <dependencies>
       <group targetFramework=".NETStandard2.0" />
     </dependencies>
@@ -17,5 +19,6 @@
   <files>
     <file src="C:\Users\Garage6\source\repos\MD5\bin\Release\netstandard2.0\MD5.dll" target="lib\netstandard2.0\MD5.dll" />
     <file src="C:\Users\Garage6\Downloads\license.txt" target="license.txt" />
+    <file src="C:\Users\Garage6\Pictures\Imagem1.png" target="Imagem1.png" />
   </files>
 </package>

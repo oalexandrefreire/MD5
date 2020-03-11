@@ -8,10 +8,17 @@
     <Description>Encrypt strings easily.</Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <ApplicationIcon>Imagem1.ico</ApplicationIcon>
+    <PackageIcon>Imagem1.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/alexandrefreiref/MD5-CSharp</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\..\Downloads\license.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\..\..\Pictures\Imagem1.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
