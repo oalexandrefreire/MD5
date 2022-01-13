@@ -1,3 +1,4 @@
 ﻿.vs
 bin
 MD5CSharp.Test/MD5.Test/obj
+*.user

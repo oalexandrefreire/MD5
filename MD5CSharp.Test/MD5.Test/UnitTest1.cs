@@ -7,7 +7,7 @@ namespace MD5.Test
         [Fact]
         public void Test1()
         {
-
+            Assert.True((true));
         }
     }
 }
