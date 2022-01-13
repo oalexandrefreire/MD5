@@ -1,8 +1,0 @@
-E:\FONTES\OUTROS\MD5-CSharp\bin\Release\netstandard2.0\MD5.deps.json
-E:\FONTES\OUTROS\MD5-CSharp\bin\Release\netstandard2.0\MD5.dll
-E:\FONTES\OUTROS\MD5-CSharp\bin\Release\netstandard2.0\MD5.pdb
-E:\FONTES\OUTROS\MD5-CSharp\obj\Release\netstandard2.0\MD5.AssemblyInfoInputs.cache
-E:\FONTES\OUTROS\MD5-CSharp\obj\Release\netstandard2.0\MD5.AssemblyInfo.cs
-E:\FONTES\OUTROS\MD5-CSharp\obj\Release\netstandard2.0\MD5.dll
-E:\FONTES\OUTROS\MD5-CSharp\obj\Release\netstandard2.0\MD5.pdb
-E:\FONTES\OUTROS\MD5-CSharp\obj\Release\netstandard2.0\MD5.csprojAssemblyReference.cache
