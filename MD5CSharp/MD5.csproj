@@ -8,20 +8,20 @@
     <Description>Encrypt strings easily.
 Example:
 string password = MD5Hash.Hash.Content("123");</Description>
-    <PackageLicenseFile>license.txt</PackageLicenseFile>
-    <ApplicationIcon>Imagem1.ico</ApplicationIcon>
-    <PackageIcon>Imagem1.png</PackageIcon>
+    <PackageLicenseFile>assets/license.txt</PackageLicenseFile>
+    <ApplicationIcon>assets/logo.ico</ApplicationIcon>
+    <PackageIcon>assets/logo.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/alexandrefreiref/MD5-CSharp</RepositoryUrl>
     <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Imagem1.png">
+    <None Include="assets/logo.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="license.txt">
+    <None Include="assets/license.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
