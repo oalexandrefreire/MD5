@@ -3,9 +3,19 @@ using System.Security.Cryptography;
 
 namespace MD5Hash
 {
-    public class Hash
+    public static class Hash
     {
         public static string Content(string text)
+        {
+            return MD5Hash.Hash.HashBuilder(text);
+        }
+
+        public static string GetMD5(this string text)
+        {
+            return MD5Hash.Hash.HashBuilder(text);
+        }
+
+        private static string HashBuilder(string text)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
             md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));

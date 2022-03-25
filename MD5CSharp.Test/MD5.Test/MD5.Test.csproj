@@ -20,4 +20,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\MD5CSharp\MD5.csproj" />
+  </ItemGroup>
+
 </Project>
