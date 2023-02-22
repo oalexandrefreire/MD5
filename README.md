@@ -16,7 +16,7 @@ To use the library, you can call the `GetMD5` method on a string to get the MD5 
 ```csharp
 string hash = "hello world".GetMD5();
 ```
-## You can also call the Content method on the MD5Hash.Hash class to get the hash from a string:
+You can also call the Content method on the MD5Hash.Hash class to get the hash from a string:
 
 ```csharp
 string hash = MD5Hash.Hash.Content("hello world");

@@ -10,13 +10,13 @@
     <ApplicationIcon>logo.ico</ApplicationIcon>
     <PackageIcon>logo.png</PackageIcon>
     <PackageIconUrl />
-    <RepositoryUrl>https://github.com/oalexandrefreire/MD5CSharp</RepositoryUrl>
-    <Version>2.0.2</Version>
+    <RepositoryUrl>https://github.com/oalexandrefreire/MD5</RepositoryUrl>
+    <Version>2.0.3</Version>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>2.0.2</AssemblyVersion>
-    <FileVersion>2.0.2</FileVersion>
-    <PackageReadmeFile>readme.md</PackageReadmeFile>
-    <PackageProjectUrl>https://github.com/oalexandrefreire/MD5CSharp</PackageProjectUrl>
+    <AssemblyVersion>2.0.3</AssemblyVersion>
+    <FileVersion>2.0.3</FileVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/oalexandrefreire/MD5</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,9 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="license.txt">
+    <None Include="..\license.txt">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
