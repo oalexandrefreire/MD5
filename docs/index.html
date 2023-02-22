@@ -4,14 +4,19 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Prism - Bootstrap 4 Open Source Landing Page Template</title>
-    <meta name="description" content="Prism is a beautiful Bootstrap 4 template for open-source landing pages."/>
+    <title>MD5 - .NET library to generate MD5 hash</title>
+    <meta name="description" content="MD5 is a .NET library that provides methods to generate MD5 hash from string content. It uses the System.Security.Cryptography.MD5 class to generate the hash."/>
 
     <!--Google font-->
     <link href="https://fonts.googleapis.com/css?family=K2D:300,400,500,700,800" rel="stylesheet">
 
     <!-- Bootstrap CSS / Color Scheme -->
     <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string, .token.variable {
+            color: #000000;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,16 +25,16 @@
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex flex-row align-items-center justify-content-between">
-                <div class="heading-brand">Prism.js</div>
-                <a href="https://prismjs.com/download.html" class="btn btn-dark" target="_blank">Download</a>
+                <div class="heading-brand"><img src="https://api.nuget.org/v3-flatcontainer/md5/2.0.3/icon" width="35" style="padding-bottom: 5px;"/>MD5</div>
+                <a href="https://www.nuget.org/packages/MD5" class="btn btn-dark" target="_blank">Download</a>
             </div>
         </div>
-        <div class="row mt-6">
+        <div class="row mt-5">
             <div class="col-md-8 mx-auto text-center">
-                <h1>Syntax Highlighter for Every Language</h1>
-                <p class="lead mb-5">Prism is a lightweight, extensible syntax highlighter, built with modern web
-                    standards in mind. It’s used in thousands of websites, including some of those you visit daily.</p>
-                <a href="https://github.com/LeaVerou/prism/" class="btn btn-success svg-icon">
+                <h1>Encrypt strings using helper/extension
+                </h1>
+                <p class="lead mb-4">MD5 is a .NET library that provides methods to generate MD5 hash from string content. It has over 30,000 downloads on NuGet and is available under the MIT License. Contributions are welcome!</p>
+                <a href="https://github.com/oalexandrefreire/MD5" class="btn btn-success svg-icon">
                     <em class="mr-2" data-feather="github"></em>
                     Contribute
                 </a>
@@ -43,24 +48,24 @@
                         <div class="orange"></div>
                         <div class="green"></div>
                     </div>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">import {DomSanitizer} from '@angular/platform-browser';
-import {Pipe, PipeTransform} from '@angular/core';
-
-import { icons } from 'feather-icons'; // v4+
-
-@Pipe({ name: 'feather' })
-export class FeatherIconsPipe implements PipeTransform {
-
-  constructor(private sanitizer: DomSanitizer) {}
-
-  transform(icon: string, size: number = 24, color: string = 'inherit') {
-    return this.sanitizer.bypassSecurityTrustHtml(icons[icon].toSvg({
-      width: size,
-      height: size,
-      color: color
-    }));
-  }
-}</code></pre>
+                    <pre class="language-javascript line-numbers"><code class="language-javascript">using MD5Hash;
+using System;
+namespace MyAppExample
+{
+    public class MyApp
+    {
+        public void MyExample()
+        {
+            string hashByHelper = Hash.Content("123");
+            Console.WriteLine(hashByHelper);
+            //output: 202cb962ac59075b964b07152d234b70
+            string hashByExtension = "123".GetMD5();
+            Console.WriteLine(hashByExtension);
+            //output: 202cb962ac59075b964b07152d234b70
+        }
+    }
+}
+</code></pre>
                 </div>
             </div>
         </div>
@@ -68,11 +73,11 @@ export class FeatherIconsPipe implements PipeTransform {
 </section>
 
 <!--Features Section-->
-<section class="py-6">
+<section class="py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2 class="text-center text-md-left">Reasons Why People Love <span class="text-success">Prism.js</span></h2>
+                <h2 class="text-center text-md-left">Reasons Why People Love <span class="text-success">MD5</span></h2>
                 <div class="row feature-grid">
                     <div class="col-sm-6">
                         <div class="media">
@@ -82,7 +87,7 @@ export class FeatherIconsPipe implements PipeTransform {
                                 </div>
                             </div>
                             <div class="media-body">
-                                Dead Simple
+                                Used by Thousands of Developers
                             </div>
                         </div>
                     </div>
@@ -94,7 +99,7 @@ export class FeatherIconsPipe implements PipeTransform {
                                 </div>
                             </div>
                             <div class="media-body">
-                                Highly Intuitive
+                                Encrypt strings using helper/extension
                             </div>
                         </div>
                     </div>
@@ -106,7 +111,7 @@ export class FeatherIconsPipe implements PipeTransform {
                                 </div>
                             </div>
                             <div class="media-body">
-                                Light as a Feather
+                                MD5 is a library light as a feather
                             </div>
                         </div>
                     </div>
@@ -118,51 +123,10 @@ export class FeatherIconsPipe implements PipeTransform {
                                 </div>
                             </div>
                             <div class="media-body">
-                                Blazing Fast
+                                It has over 30,000 downloads on NuGet
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="media">
-                            <div class="icon-box">
-                                <div class="icon-box-inner">
-                                    <span data-feather="git-pull-request" width="28" height="28"></span>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                Extensible
-                            </div>
-                        </div>
-                    </div><div class="col-sm-6">
-                        <div class="media">
-                            <div class="icon-box">
-                                <div class="icon-box-inner">
-                                    <span data-feather="droplet" width="28" height="28"></span>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                Easy Styling
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!--Used By Section-->
-<section class="pb-6">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <h2 class="text-center text-md-left">Used by Thousands of Companies</h2>
-                <p class="lead text-muted">Prism.js is used on several websites, small and large.</p>
-                <div class="mt-5 d-flex flex-row justify-content-md-between flex-wrap press-icons">
-                    <img src="https://logo.clearbit.com/google.com?size=60" alt="Google"/>
-                    <img src="https://logo.clearbit.com/twitter.com?size=60" alt="Twitter"/>
-                    <img src="https://logo.clearbit.com/vuejs.org?size=60" alt="Veu.js"/>
-                    <img src="https://logo.clearbit.com/stripe.com?size=60" alt="Stripe"/>
                 </div>
             </div>
         </div>
@@ -170,20 +134,20 @@ export class FeatherIconsPipe implements PipeTransform {
 </section>
 
 <!--footer-->
-<footer class="py-5 bg-light">
+<footer class="py-4 bg-light">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="https://prismjs.com/test.html">Test Drive</a></li>
-                    <li class="list-inline-item"><a href="https://prismjs.com/extending.html">API Docs</a></li>
-                    <li class="list-inline-item"><a href="https://github.com/LeaVerou/prism/">Fork Prism.js on GitHub</a></li>
+                    <li class="list-inline-item"><a href="https://www.nuget.org/packages/MD5">Test Drive</a></li>
+                    <li class="list-inline-item"><a href="https://github.com/oalexandrefreire/MD5#readme">API Docs</a></li>
+                    <li class="list-inline-item"><a href="https://github.com/oalexandrefreire/MD5/fork/">Fork MD5 on GitHub</a></li>
                 </ul>
             </div>
         </div>
         <div class="row my-2">
             <div class="col-md-4 mx-auto text-muted text-center small-xl">
-                &copy; 2019 Prism - All Rights Reserved
+                &copy; 2023 MD5 - All Rights Reserved
             </div>
         </div>
     </div>
