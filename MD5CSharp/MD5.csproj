@@ -5,7 +5,7 @@
     <Authors>Alexandre Freire</Authors>
     <Company>Alexandre Freire</Company>
     <PackageTags>Hash, MD5, MD5Hash, Encryptor</PackageTags>
-    <Description>Encrypt strings using helper/extension. Ex: string key = "hello world".GetMD5() or string key = MD5Hash.Hash.Content("123");</Description>
+    <Description>Encrypt strings, byteArray or stream using helper/extension. Ex: string key = "hello world".GetMD5() or string key = MD5Hash.Hash.Content("123");</Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <ApplicationIcon>logo.ico</ApplicationIcon>
     <PackageIcon>logo.png</PackageIcon>
