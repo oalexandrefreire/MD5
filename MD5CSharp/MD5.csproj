@@ -17,6 +17,7 @@
     <FileVersion>2.0.4</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/oalexandrefreire/MD5</PackageProjectUrl>
+    <PackageReleaseNotes>added suport to byteArray and stream</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

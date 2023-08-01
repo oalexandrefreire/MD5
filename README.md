@@ -18,7 +18,7 @@ Examples:
 string hash = "hello world".GetMD5();
 ```
 ```csharp
-var stream = File.OpenRead("Rondônia.pdf");
+var stream = File.OpenRead("Rondonia.pdf");
 string hash = stream.GetMD5();
 ```
 ```csharp
