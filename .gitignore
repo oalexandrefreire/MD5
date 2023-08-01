@@ -2,3 +2,4 @@
 bin
 MD5CSharp.Test/MD5.Test/obj
 *.user
+MD5CSharp/nuget.config
