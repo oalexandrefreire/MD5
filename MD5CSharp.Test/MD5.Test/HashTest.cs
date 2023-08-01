@@ -33,7 +33,7 @@ namespace MD5.Test
         [Fact]
         public void MD5HashGetMD5FromStream()
         {
-            var stream = File.OpenRead("Rondônia.pdf");
+            var stream = File.OpenRead("Rondonia.pdf");
             string expectedHash = "580a9bb265b985a41df74ad34f4d8951";
             string actualHash = stream.GetMD5();
             Assert.Equal(expectedHash, actualHash);
