@@ -24,4 +24,10 @@
     <ProjectReference Include="..\..\MD5CSharp\MD5.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Rondônia.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
