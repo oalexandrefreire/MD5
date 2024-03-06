@@ -11,13 +11,14 @@
     <PackageIcon>logo.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/oalexandrefreire/MD5</RepositoryUrl>
-    <Version>2.0.4</Version>
+    <Version>2.0.5</Version>
     <RepositoryType>git</RepositoryType>
     <AssemblyVersion>2.0.5</AssemblyVersion>
     <FileVersion>2.0.5</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/oalexandrefreire/MD5</PackageProjectUrl>
-    <PackageReleaseNotes>added suport to byteArray and stream</PackageReleaseNotes>
+    <PackageReleaseNotes>added suport to objects
+removed duplicated codes from Hash.cs</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

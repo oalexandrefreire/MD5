@@ -1,4 +1,4 @@
-![Nuget](https://img.shields.io/nuget/dt/md5)
+﻿![Nuget](https://img.shields.io/nuget/dt/md5)
 ![Nuget](https://img.shields.io/nuget/v/md5)
 
 # MD5
@@ -7,15 +7,17 @@
 
 ## Overview
 
-MD5 is a .NET library that provides methods to generate MD5 hash from string, byteArray or stream content. It uses the System.Security.Cryptography.MD5 class to generate the hash.
+MD5 is a .NET library that provides methods to generate MD5 hash from string, byteArray, object or stream content. It uses the System.Security.Cryptography.MD5 class to generate the hash.
 
 ## Usage
 
-To use the library, you can call the `GetMD5` method on a string, byteArray or stream to get the MD5 hash.
+To use the library, you can call the `GetMD5` method on a string, byteArray, object or stream to get the MD5 hash.
 Examples:
 
 ```csharp
-string hash = "hello world".GetMD5();
+string hash1 = "hello world".GetMD5();
+// or specific encoding type
+string hash2 = "hello world".GetMD5(EncodingType.UTF8);
 ```
 ```csharp
 var stream = File.OpenRead("Rondonia.pdf");
@@ -25,16 +27,14 @@ string hash = stream.GetMD5();
 byte[] byteArray = Encoding.UTF8.GetBytes("Hello, World!");
 string hash = byteArray.GetMD5();
 ```
+```csharp
+BrasilModel obj = new BrasilModel() { Id = 1, Details = "Maior país da América do Sul" };
+string hash = obj.GetMD5();
+```
 To number you can use:
 ```csharp
 string hash = myNumber.ToString().GetMD5():
 ```
-You can also call the Content method on the MD5Hash.Hash class to get the hash from a string, byteArray or Stream
-
-```csharp
-string hash = MD5Hash.Hash.Content("hello world");
-```
-
 
 ## Installation
 You can install the library via NuGet package manager by searching for MD5 or by executing the following command in the Package Manager Console:
