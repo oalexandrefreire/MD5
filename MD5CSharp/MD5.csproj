@@ -5,7 +5,7 @@
     <Authors>Alexandre Freire</Authors>
     <Company>Alexandre Freire</Company>
     <PackageTags>Hash, MD5, MD5Hash, Encryptor</PackageTags>
-    <Description>Encrypt strings, byteArray or stream using helper/extension. Ex: string key = "hello world".GetMD5() or string key = MD5Hash.Hash.Content("123");</Description>
+    <Description>Encrypt strings, byteArray, objects or stream using .GetMD5() extension. Ex: string key = "hello world".GetMD5();</Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <ApplicationIcon>logo.ico</ApplicationIcon>
     <PackageIcon>logo.png</PackageIcon>
@@ -13,8 +13,8 @@
     <RepositoryUrl>https://github.com/oalexandrefreire/MD5</RepositoryUrl>
     <Version>2.0.4</Version>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>2.0.4</AssemblyVersion>
-    <FileVersion>2.0.4</FileVersion>
+    <AssemblyVersion>2.0.5</AssemblyVersion>
+    <FileVersion>2.0.5</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/oalexandrefreire/MD5</PackageProjectUrl>
     <PackageReleaseNotes>added suport to byteArray and stream</PackageReleaseNotes>
