@@ -1,4 +1,4 @@
-name: Enforce License Compliance
+name: Codecov
 
 on:
   pull_request:
