@@ -1,5 +1,6 @@
 ﻿![Nuget](https://img.shields.io/nuget/dt/md5)
 ![Nuget](https://img.shields.io/nuget/v/md5)
+[![Enforce License Compliance](https://github.com/oalexandrefreire/MD5/actions/workflows/ci.yaml/badge.svg)](https://github.com/oalexandrefreire/MD5/actions/workflows/ci.yaml)
 
 # MD5
 
