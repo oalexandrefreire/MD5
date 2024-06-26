@@ -36,13 +36,18 @@ jobs:
     - name: Generate Cobertura coverage report
       run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage -reporttypes:Cobertura
 
+#    - name: Find coverage report
+#      run: find . -name 'coverage.cobertura.xml'
     - name: Find coverage report
-      run: find . -name 'coverage.cobertura.xml'
+      id: find_coverage
+      run: |
+        COVERAGE_FILE=$(find . -name 'coverage.cobertura.xml')
+        echo "::set-output name=coverage_file::$COVERAGE_FILE"
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./coverage.cobertura.xml
+        files: ${{ steps.find_coverage.outputs.coverage_file }}
         flags: unittests
         name: codecov-umbrella
