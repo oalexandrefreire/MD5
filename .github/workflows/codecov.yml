@@ -30,9 +30,14 @@ jobs:
     - name: Test
       run: dotnet test --no-build --collect:"XPlat Code Coverage" MD5CSharp/MD5.sln
 
-    - name: Convert coverage to Cobertura
+    - name: Install ReportGenerator
       run: dotnet tool install -g dotnet-reportgenerator-globaltool
-    - run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage -reporttypes:Cobertura
+
+    - name: Generate Cobertura coverage report
+      run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage -reporttypes:Cobertura
+
+    - name: Find coverage report
+      run: find . -name 'coverage.cobertura.xml'
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
