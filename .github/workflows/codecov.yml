@@ -22,13 +22,13 @@ jobs:
         dotnet-version: '6.0.x' # specify the .NET version you are using
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore MD5CSharp/MD5.sln
 
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore MD5CSharp/MD5.sln
 
     - name: Test
-      run: dotnet test --no-build --collect:"XPlat Code Coverage"
+      run: dotnet test --no-build --collect:"XPlat Code Coverage" MD5CSharp/MD5.sln
 
     - name: Generate coverage report
       run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage -reporttypes:Html
