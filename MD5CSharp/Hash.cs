@@ -10,8 +10,6 @@ namespace MD5Hash
     {
         public static string Content(string text, EncodingType encodingType = EncodingType.ASCII) => GetHash(text, encodingType);
 
-        public static string GetMD5(this string text, EncodingType encodingType = EncodingType.ASCII) => GetHash(text, encodingType);
-
         public static string GetMD5(this object value, EncodingType encodingType = EncodingType.UTF8)
         {
             try
@@ -29,6 +27,68 @@ namespace MD5Hash
         public static string GetMD5(this byte[] byteArray) => HashBuilder(byteArray);
 
         public static string GetMD5(this Stream stream) => HashBuilder(stream);
+
+        public static string GetMD5(this string text, EncodingType encodingType = EncodingType.ASCII) => GetHash(text, encodingType);
+
+        public static string GetMD5WithSalt(this string text, string salt, EncodingType encodingType = EncodingType.UTF8)
+        {
+            if (string.IsNullOrEmpty(text))
+                return null;
+
+            string saltedText = $"{salt}{text}";
+            return GetHash(saltedText, encodingType);
+        }
+
+        public static string GetMD5WithSalt(this object value, string salt, EncodingType encodingType = EncodingType.UTF8)
+        {
+            try
+            {
+                string text = JsonConvert.SerializeObject(value);
+                string saltedText = $"{salt}{text}";
+                return GetHash(saltedText, encodingType);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetMD5WithSalt: {ex.Message}");
+                return null;
+            }
+        }
+
+        public static string GetMD5WithSalt(this byte[] byteArray, byte[] salt)
+        {
+            if (byteArray == null || salt == null)
+                return null;
+
+            byte[] saltedBytes = Combine(byteArray, salt);
+            return HashBuilder(saltedBytes);
+        }
+
+        public static string GetMD5WithSalt(this Stream stream, byte[] salt)
+        {
+            try
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    stream.CopyTo(memoryStream);
+                    byte[] streamBytes = memoryStream.ToArray();
+                    byte[] saltedBytes = Combine(streamBytes, salt);
+                    return HashBuilder(saltedBytes);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetMD5WithSalt: {ex.Message}");
+                return null;
+            }
+        }
+
+        private static byte[] Combine(byte[] first, byte[] second)
+        {
+            byte[] result = new byte[first.Length + second.Length];
+            Buffer.BlockCopy(first, 0, result, 0, first.Length);
+            Buffer.BlockCopy(second, 0, result, first.Length, second.Length);
+            return result;
+        }
 
         private static string GetHash(this string text, EncodingType encodingType = EncodingType.ASCII)
         {

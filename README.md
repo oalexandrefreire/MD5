@@ -1,4 +1,5 @@
-﻿![Nuget](https://img.shields.io/nuget/dt/md5)
+﻿
+![Nuget](https://img.shields.io/nuget/dt/md5)
 ![Nuget](https://img.shields.io/nuget/v/md5)
 
 # MD5
@@ -34,6 +35,37 @@ string hash = obj.GetMD5();
 To number you can use:
 ```csharp
 string hash = myNumber.ToString().GetMD5():
+```
+
+## New Feature: MD5 with Salt
+
+This new feature allows you to generate a salted MD5 hash, enhancing security.
+
+### Usage
+
+To use the salted hash functionality, you can call the `GetMD5WithSalt` method on a string, byteArray, or object to get the MD5 hash with a salt.
+Examples:
+
+```csharp
+string salt = "randomSalt";
+string hash1 = "hello world".GetMD5WithSalt(salt);
+// or specific encoding type
+string hash2 = "hello world".GetMD5WithSalt(salt, EncodingType.UTF8);
+```
+```csharp
+byte[] byteArray = Encoding.UTF8.GetBytes("Hello, World!");
+byte[] saltBytes = Encoding.UTF8.GetBytes("randomSalt");
+string hash = byteArray.GetMD5WithSalt(saltBytes);
+```
+```csharp
+BrasilModel obj = new BrasilModel() { Id = 1, Details = "Maior país da América do Sul" };
+string salt = "randomSalt";
+string hash = obj.GetMD5WithSalt(salt);
+```
+To number you can use:
+```csharp
+string salt = "randomSalt";
+string hash = myNumber.ToString().GetMD5WithSalt(salt);
 ```
 
 ## Installation
