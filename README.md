@@ -1,6 +1,7 @@
 ﻿
 ![Nuget](https://img.shields.io/nuget/dt/md5)
 ![Nuget](https://img.shields.io/nuget/v/md5)
+[![codecov](https://codecov.io/gh/oalexandrefreire/MD5/graph/badge.svg?token=9TLI2KMZHX)](https://codecov.io/gh/oalexandrefreire/MD5)
 
 # MD5
 

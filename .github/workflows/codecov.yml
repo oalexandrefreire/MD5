@@ -1,0 +1,53 @@
+name: Codecov Integration
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4  
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4  
+      with:
+        dotnet-version: '6.0.x' 
+
+    - name: Restore dependencies
+      run: dotnet restore MD5CSharp/MD5.sln
+
+    - name: Build
+      run: dotnet build --no-restore MD5CSharp/MD5.sln
+
+    - name: Test
+      run: dotnet test --no-build --collect:"XPlat Code Coverage" MD5CSharp/MD5.sln
+
+    - name: Install ReportGenerator
+      run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+    - name: Generate Cobertura coverage report
+      run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage -reporttypes:Cobertura
+
+#    - name: Find coverage report
+#      run: find . -name 'coverage.cobertura.xml'
+    - name: Find coverage report
+      id: find_coverage
+      run: |
+        COVERAGE_FILE=$(find . -name 'coverage.cobertura.xml')
+        echo "::set-output name=coverage_file::$COVERAGE_FILE"
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ${{ steps.find_coverage.outputs.coverage_file }}
+        flags: unittests
+        name: codecov-umbrella
