@@ -4,20 +4,20 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Alexandre Freire</Authors>
     <Company>Alexandre Freire</Company>
-    <PackageTags>Hash, MD5, MD5Hash, Checksum</PackageTags>
-    <Description>Generate MD5 hashes for compatibility and checksums from strings, byte arrays, objects or streams. This package does not provide encryption.</Description>
+    <PackageTags>Hash, MD5, SHA256, HMAC-SHA256, MD5Hash, Checksum</PackageTags>
+    <Description>Generate MD5 hashes for compatibility and checksums, plus SHA-256 and HMAC-SHA-256 for new integrity scenarios, from strings, byte arrays, objects or streams. This package does not provide encryption or password hashing.</Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <ApplicationIcon>logo.ico</ApplicationIcon>
     <PackageIcon>logo.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/oalexandrefreire/MD5</RepositoryUrl>
-    <Version>2.2.6</Version>
+    <Version>2.3.0</Version>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>2.2.5</AssemblyVersion>
-    <FileVersion>2.2.6</FileVersion>
+    <AssemblyVersion>2.3.0</AssemblyVersion>
+    <FileVersion>2.3.0</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/oalexandrefreire/MD5</PackageProjectUrl>
-    <PackageReleaseNotes>Improved stream hashing performance, expanded compatibility tests and clarified MD5 security guidance.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added SHA-256 and HMAC-SHA-256 APIs without changing existing MD5 signatures or behavior.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

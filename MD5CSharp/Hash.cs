@@ -30,6 +30,49 @@ namespace MD5Hash
 
         public static string GetMD5(this string text, EncodingType encodingType = EncodingType.ASCII) => GetHash(text, encodingType);
 
+        public static string GetSHA256(this object value, EncodingType encodingType = EncodingType.UTF8)
+        {
+            try
+            {
+                string text = JsonConvert.SerializeObject(value);
+                return GetSHA256Hash(text, encodingType);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetSHA256: {ex.Message}");
+                return null;
+            }
+        }
+
+        public static string GetSHA256(this byte[] byteArray) => SHA256HashBuilder(byteArray);
+
+        public static string GetSHA256(this Stream stream) => SHA256HashBuilder(stream);
+
+        public static string GetSHA256(this string text, EncodingType encodingType = EncodingType.UTF8) => GetSHA256Hash(text, encodingType);
+
+        public static string GetHMACSHA256(this object value, string key, EncodingType encodingType = EncodingType.UTF8)
+        {
+            try
+            {
+                if (key == null)
+                    return null;
+
+                string text = JsonConvert.SerializeObject(value);
+                return GetHMACSHA256Hash(text, key, encodingType);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetHMACSHA256: {ex.Message}");
+                return null;
+            }
+        }
+
+        public static string GetHMACSHA256(this byte[] byteArray, byte[] key) => HMACSHA256HashBuilder(byteArray, key);
+
+        public static string GetHMACSHA256(this Stream stream, byte[] key) => HMACSHA256HashBuilder(stream, key);
+
+        public static string GetHMACSHA256(this string text, string key, EncodingType encodingType = EncodingType.UTF8) => GetHMACSHA256Hash(text, key, encodingType);
+
         public static string GetMD5WithSalt(this string text, string salt, EncodingType encodingType = EncodingType.UTF8)
         {
             if (string.IsNullOrEmpty(text))
@@ -157,6 +200,73 @@ namespace MD5Hash
             {
                 Console.WriteLine($"Error in GetMD5WithSalt: {ex.Message}");
                 return null;
+            }
+        }
+
+        private static string GetSHA256Hash(string text, EncodingType encodingType)
+        {
+            if (text == null)
+                return null;
+
+            byte[] bytes = GetBytesWithEncoding(text, encodingType);
+            return bytes == null ? null : SHA256HashBuilder(bytes);
+        }
+
+        private static string GetHMACSHA256Hash(string text, string key, EncodingType encodingType)
+        {
+            if (text == null || key == null)
+                return null;
+
+            byte[] data = GetBytesWithEncoding(text, encodingType);
+            byte[] keyBytes = GetBytesWithEncoding(key, encodingType);
+
+            if (data == null || keyBytes == null)
+                return null;
+
+            return HMACSHA256HashBuilder(data, keyBytes);
+        }
+
+        private static string SHA256HashBuilder(byte[] data)
+        {
+            if (data == null)
+                return null;
+
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                return ToLowerHex(sha256.ComputeHash(data));
+            }
+        }
+
+        private static string SHA256HashBuilder(Stream stream)
+        {
+            if (stream == null)
+                return null;
+
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                return ToLowerHex(sha256.ComputeHash(stream));
+            }
+        }
+
+        private static string HMACSHA256HashBuilder(byte[] data, byte[] key)
+        {
+            if (data == null || key == null)
+                return null;
+
+            using (HMACSHA256 hmac = new HMACSHA256(key))
+            {
+                return ToLowerHex(hmac.ComputeHash(data));
+            }
+        }
+
+        private static string HMACSHA256HashBuilder(Stream stream, byte[] key)
+        {
+            if (stream == null || key == null)
+                return null;
+
+            using (HMACSHA256 hmac = new HMACSHA256(key))
+            {
+                return ToLowerHex(hmac.ComputeHash(stream));
             }
         }
 

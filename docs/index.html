@@ -4,8 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>MD5 - .NET library for MD5 hashes</title>
-    <meta name="description" content="A .NET library for generating MD5 hashes from strings, byte arrays, objects and streams for compatibility and checksums."/>
+    <title>MD5 - .NET library for MD5, SHA-256 and HMAC-SHA-256 hashes</title>
+    <meta name="description" content="A .NET library for generating MD5, SHA-256 and HMAC-SHA-256 hashes from strings, byte arrays, objects and streams."/>
 
     <!--Google font-->
     <link href="https://fonts.googleapis.com/css?family=K2D:300,400,500,700,800" rel="stylesheet">
@@ -33,7 +33,8 @@
             <div class="col-md-8 mx-auto text-center">
                 <h1>Generate hashes using helper/extension methods
                 </h1>
-                <p class="lead mb-4">MD5 is a .NET library for generating hashes from strings, byte arrays, objects and streams. It is available under the MIT License. Contributions are welcome!</p>
+                <p class="lead mb-4">A .NET library for generating MD5 hashes for compatibility, plus SHA-256 and HMAC-SHA-256 for new integrity scenarios. It is available under the MIT License.</p>
+                <p class="text-muted">Use MD5 only for legacy compatibility and checksums. It is not encryption or password hashing.</p>
                 <a href="https://github.com/oalexandrefreire/MD5" class="btn btn-success svg-icon">
                     <em class="mr-2" data-feather="github"></em>
                     Contribute
@@ -62,6 +63,8 @@ namespace MyAppExample
             string hashByExtension = "123".GetMD5();
             Console.WriteLine(hashByExtension);
             //output: 202cb962ac59075b964b07152d234b70
+            string sha256 = "123".GetSHA256();
+            string hmac = "123".GetHMACSHA256("a-secret-key");
         }
     }
 }
@@ -111,7 +114,7 @@ namespace MyAppExample
                                 </div>
                             </div>
                             <div class="media-body">
-                                MD5 is a library light as a feather
+                                SHA-256 and HMAC-SHA-256 for new integrity scenarios
                             </div>
                         </div>
                     </div>
