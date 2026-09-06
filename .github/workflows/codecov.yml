@@ -19,7 +19,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4  
       with:
-        dotnet-version: '6.0.x' 
+        dotnet-version: '8.0.x'
 
     - name: Restore dependencies
       run: dotnet restore MD5CSharp/MD5.sln
@@ -42,10 +42,10 @@ jobs:
       id: find_coverage
       run: |
         COVERAGE_FILE=$(find . -name 'coverage.cobertura.xml')
-        echo "::set-output name=coverage_file::$COVERAGE_FILE"
+        echo "coverage_file=$COVERAGE_FILE" >> "$GITHUB_OUTPUT"
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: ${{ steps.find_coverage.outputs.coverage_file }}

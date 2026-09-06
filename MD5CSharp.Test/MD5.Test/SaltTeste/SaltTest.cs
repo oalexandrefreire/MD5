@@ -39,7 +39,7 @@ namespace MD5.Test
         [Fact]
         public void MD5HashGetMD5WithSalt_ShouldReturnNullForNullInput()
         {
-            string input = null;
+            string? input = null;
             string salt = "randomSalt";
 
             string hash = input.GetMD5WithSalt(salt);
@@ -60,6 +60,14 @@ namespace MD5.Test
             Assert.NotNull(hash1);
             Assert.NotNull(hash2);
             Assert.NotEqual(hash1, hash2);
+        }
+
+        [Fact]
+        public void MD5HashGetMD5WithSalt_String_ShouldPreserveCurrentPrefixSaltResult()
+        {
+            string hash = "hello world".GetMD5WithSalt("randomSalt");
+
+            Assert.Equal("c366e5ffe5fdb994846b13d36eda3595", hash);
         }
 
         [Fact]
@@ -92,6 +100,16 @@ namespace MD5.Test
         }
 
         [Fact]
+        public void MD5HashGetMD5WithSalt_Object_ShouldPreserveCurrentPrefixSaltResult()
+        {
+            var obj = new { Id = 1, Name = "Test" };
+
+            string hash = obj.GetMD5WithSalt("randomSalt");
+
+            Assert.Equal("47f05f41e2bc70a9c578c7d79c598724", hash);
+        }
+
+        [Fact]
         public void MD5HashGetMD5WithSalt_ByteArray_ShouldReturnDifferentHashesForDifferentByteArraysWithSameSalt()
         {
             byte[] byteArray1 = Encoding.UTF8.GetBytes("Hello, World!");
@@ -118,6 +136,17 @@ namespace MD5.Test
             Assert.NotNull(hash1);
             Assert.NotNull(hash2);
             Assert.Equal(hash1, hash2);
+        }
+
+        [Fact]
+        public void MD5HashGetMD5WithSalt_ByteArray_ShouldPreserveCurrentSuffixSaltResult()
+        {
+            byte[] byteArray = Encoding.UTF8.GetBytes("Hello, World!");
+            byte[] salt = Encoding.UTF8.GetBytes("randomSalt");
+
+            string hash = byteArray.GetMD5WithSalt(salt);
+
+            Assert.Equal("42e794363cd8641f7174e809e6cd2bc6", hash);
         }
 
         [Fact]
@@ -148,6 +177,26 @@ namespace MD5.Test
             Assert.NotNull(hash1);
             Assert.NotNull(hash2);
             Assert.Equal(hash1, hash2);
+        }
+
+        [Fact]
+        public void MD5HashGetMD5WithSalt_Stream_ShouldMatchByteArrayForLargeInput()
+        {
+            byte[] input = new byte[200000];
+            for (int i = 0; i < input.Length; i++)
+            {
+                input[i] = (byte)(i % 251);
+            }
+
+            byte[] salt = Encoding.UTF8.GetBytes("randomSalt");
+            string expectedHash = input.GetMD5WithSalt(salt);
+
+            using (var stream = new MemoryStream(input))
+            {
+                string actualHash = stream.GetMD5WithSalt(salt);
+
+                Assert.Equal(expectedHash, actualHash);
+            }
         }
 
     }

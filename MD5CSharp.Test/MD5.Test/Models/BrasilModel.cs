@@ -3,6 +3,6 @@
     public class BrasilModel
     {
         public int Id { get; set; }
-        public string Details { get; set; }
+        public string? Details { get; set; }
     }
 }

@@ -65,21 +65,7 @@ namespace MD5Hash
 
         public static string GetMD5WithSalt(this Stream stream, byte[] salt)
         {
-            try
-            {
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    stream.CopyTo(memoryStream);
-                    byte[] streamBytes = memoryStream.ToArray();
-                    byte[] saltedBytes = Combine(streamBytes, salt);
-                    return HashBuilder(saltedBytes);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error in GetMD5WithSalt: {ex.Message}");
-                return null;
-            }
+            return HashBuilder(stream, salt);
         }
 
         private static byte[] Combine(byte[] first, byte[] second)
@@ -137,8 +123,7 @@ namespace MD5Hash
         {
             using (MD5 md5 = MD5.Create())
             {
-                byte[] result = md5.ComputeHash(data);
-                return BitConverter.ToString(result).Replace("-", "").ToLower();
+                return ToLowerHex(md5.ComputeHash(data));
             }
         }
 
@@ -146,9 +131,47 @@ namespace MD5Hash
         {
             using (MD5 md5 = MD5.Create())
             {
-                byte[] result = md5.ComputeHash(stream);
-                return BitConverter.ToString(result).Replace("-", "").ToLower();
+                return ToLowerHex(md5.ComputeHash(stream));
             }
+        }
+
+        private static string HashBuilder(Stream stream, byte[] suffix)
+        {
+            try
+            {
+                using (MD5 md5 = MD5.Create())
+                {
+                    byte[] buffer = new byte[81920];
+                    int bytesRead;
+
+                    while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        md5.TransformBlock(buffer, 0, bytesRead, buffer, 0);
+                    }
+
+                    md5.TransformFinalBlock(suffix, 0, suffix.Length);
+                    return ToLowerHex(md5.Hash);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetMD5WithSalt: {ex.Message}");
+                return null;
+            }
+        }
+
+        private static string ToLowerHex(byte[] data)
+        {
+            const string hexadecimal = "0123456789abcdef";
+            char[] result = new char[data.Length * 2];
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                result[i * 2] = hexadecimal[data[i] >> 4];
+                result[(i * 2) + 1] = hexadecimal[data[i] & 0x0F];
+            }
+
+            return new string(result);
         }
     }
 }

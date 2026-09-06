@@ -4,20 +4,20 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Alexandre Freire</Authors>
     <Company>Alexandre Freire</Company>
-    <PackageTags>Hash, MD5, MD5Hash, Encryptor</PackageTags>
-    <Description>Encrypt strings, byteArray, objects or stream using .GetMD5() extension. Ex: string key = "hello world".GetMD5();</Description>
+    <PackageTags>Hash, MD5, MD5Hash, Checksum</PackageTags>
+    <Description>Generate MD5 hashes for compatibility and checksums from strings, byte arrays, objects or streams. This package does not provide encryption.</Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <ApplicationIcon>logo.ico</ApplicationIcon>
     <PackageIcon>logo.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/oalexandrefreire/MD5</RepositoryUrl>
-    <Version>2.2.5</Version>
+    <Version>2.2.6</Version>
     <RepositoryType>git</RepositoryType>
     <AssemblyVersion>2.2.5</AssemblyVersion>
-    <FileVersion>2.2.5</FileVersion>
+    <FileVersion>2.2.6</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/oalexandrefreire/MD5</PackageProjectUrl>
-    <PackageReleaseNotes>added suport to MD5 with Salt</PackageReleaseNotes>
+    <PackageReleaseNotes>Improved stream hashing performance, expanded compatibility tests and clarified MD5 security guidance.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup>
