@@ -1,166 +1,114 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>MD5 - .NET library for MD5, SHA-256 and HMAC-SHA-256 hashes</title>
-    <meta name="description" content="A .NET library for generating MD5, SHA-256 and HMAC-SHA-256 hashes from strings, byte arrays, objects and streams."/>
-
-    <!--Google font-->
-    <link href="https://fonts.googleapis.com/css?family=K2D:300,400,500,700,800" rel="stylesheet">
-
-    <!-- Bootstrap CSS / Color Scheme -->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <style>
-        .token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string, .token.variable {
-            color: #000000;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101828">
+    <meta name="description" content="Documentação da biblioteca MD5 para .NET: gere hashes MD5, SHA-256, HMAC-SHA-256 e hashes de senha com PBKDF2, bcrypt e Argon2id.">
+    <meta name="keywords" content="MD5 .NET, SHA-256 C#, HMAC-SHA-256, PBKDF2, bcrypt, Argon2id, hash C#, NuGet MD5">
+    <meta name="author" content="Alexandre Freire">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="MD5 para .NET | Documentação de hashes e senhas">
+    <meta property="og:description" content="Aprenda a usar cada método da biblioteca MD5 em projetos C# e .NET, com exemplos de strings, objetos, bytes, streams e senhas.">
+    <meta property="og:url" content="https://oalexandrefreire.github.io/MD5/">
+    <meta property="og:site_name" content="MD5 para .NET">
+    <meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://oalexandrefreire.github.io/MD5/">
+    <link rel="alternate" hreflang="pt-BR" href="https://oalexandrefreire.github.io/MD5/">
+    <link rel="alternate" hreflang="en" href="https://oalexandrefreire.github.io/MD5/en/">
+    <link rel="alternate" hreflang="x-default" href="https://oalexandrefreire.github.io/MD5/en/">
+    <link rel="icon" href="../MD5CSharp/logo.ico">
+    <link rel="stylesheet" href="css/docs.css">
+    <title>MD5 para .NET: documentação de hashes, HMAC e senhas</title>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"TechArticle","headline":"MD5 para .NET: documentação de hashes, HMAC e senhas","description":"Guia completo da biblioteca MD5 para gerar hashes e armazenar senhas com segurança em C#.","url":"https://oalexandrefreire.github.io/MD5/","inLanguage":"pt-BR","author":{"@type":"Person","name":"Alexandre Freire"},"publisher":{"@type":"Organization","name":"MD5 para .NET"},"isPartOf":{"@type":"SoftwareApplication","name":"MD5","applicationCategory":"DeveloperApplication","operatingSystem":".NET"}}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"MD5 é seguro para senhas?","acceptedAnswer":{"@type":"Answer","text":"Não. Use PasswordHash com Argon2id, PBKDF2 ou bcrypt para armazenar senhas. MD5 é mantido para compatibilidade e checksums."}},{"@type":"Question","name":"Qual método devo usar para validar a integridade de um arquivo?","acceptedAnswer":{"@type":"Answer","text":"Use GetSHA256 para checksums e impressões digitais de conteúdo. GetHMACSHA256 é indicado quando também é necessário autenticar o conteúdo com uma chave secreta compartilhada."}},{"@type":"Question","name":"Como instalar a biblioteca MD5 no .NET?","acceptedAnswer":{"@type":"Answer","text":"Instale o pacote NuGet MD5 com dotnet add package MD5 ou pelo Package Manager Console usando Install-Package MD5."}}]}
+    </script>
 </head>
 <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="#inicio" aria-label="MD5 para .NET, início"><span class="brand-mark">#</span><span>MD5<span class="brand-suffix">.NET</span></span></a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+            <nav id="main-nav" class="main-nav" aria-label="Navegação principal"><a href="#inicio">Início</a><a href="#instalacao">Instalação</a><a href="#hashes">Hashes</a><a href="#senhas">Senhas</a><a href="#api">API</a><span class="language-switch" aria-label="Idioma"><a class="active" href="./" lang="pt-BR">PT</a><span aria-hidden="true">/</span><a href="en/" lang="en">EN</a></span><a class="nav-cta" href="https://www.nuget.org/packages/MD5" target="_blank" rel="noopener">NuGet ↗</a></nav>
+        </div>
+    </header>
 
-<!--Header Section-->
-<section class="bg-gradient pt-5 pb-6">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex flex-row align-items-center justify-content-between">
-                <div class="heading-brand"><img src="https://api.nuget.org/v3-flatcontainer/md5/2.0.3/icon" width="35" style="padding-bottom: 5px;"/>MD5</div>
-                <a href="https://www.nuget.org/packages/MD5" class="btn btn-dark" target="_blank">Download</a>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-8 mx-auto text-center">
-                <h1>Generate hashes using helper/extension methods
-                </h1>
-                <p class="lead mb-4">A .NET library for generating MD5 hashes for compatibility, plus SHA-256 and HMAC-SHA-256 for new integrity scenarios. It is available under the MIT License.</p>
-                <p class="text-muted">Use MD5 only for legacy compatibility and checksums. It is not encryption or password hashing.</p>
-                <a href="https://github.com/oalexandrefreire/MD5" class="btn btn-success svg-icon">
-                    <em class="mr-2" data-feather="github"></em>
-                    Contribute
-                </a>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-9 mx-auto">
-                <div class="code-window">
-                    <div class="dots">
-                        <div class="red"></div>
-                        <div class="orange"></div>
-                        <div class="green"></div>
-                    </div>
-                    <pre class="language-javascript line-numbers"><code class="language-javascript">using MD5Hash;
-using System;
-namespace MyAppExample
-{
-    public class MyApp
-    {
-        public void MyExample()
-        {
-            string hashByHelper = Hash.Content("123");
-            Console.WriteLine(hashByHelper);
-            //output: 202cb962ac59075b964b07152d234b70
-            string hashByExtension = "123".GetMD5();
-            Console.WriteLine(hashByExtension);
-            //output: 202cb962ac59075b964b07152d234b70
-            string sha256 = "123".GetSHA256();
-            string hmac = "123".GetHMACSHA256("a-secret-key");
-        }
-    }
-}
-</code></pre>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    <main id="conteudo">
+        <section id="inicio" class="hero-section" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div class="hero-copy"><p class="eyebrow">Biblioteca .NET para hashing</p><h1 id="hero-title">Hashes para C# com uma API simples e direta.</h1><p class="hero-lead">Gere MD5 para compatibilidade, SHA-256 para integridade, HMAC-SHA-256 para autenticidade e hashes de senha modernos em aplicações .NET.</p><div class="hero-actions"><a class="button button-primary" href="#instalacao">Começar agora →</a><a class="button button-secondary" href="https://github.com/oalexandrefreire/MD5" target="_blank" rel="noopener">Ver no GitHub ↗</a></div><div class="trust-row"><span><strong>netstandard2.0</strong></span><span>•</span><span>MIT License</span><span>•</span><span>NuGet</span></div></div>
+                <div class="hero-code code-card" aria-label="Exemplo rápido em C#"><div class="code-card-top"><span class="window-dot red" aria-hidden="true">&#160;</span><span class="window-dot yellow" aria-hidden="true">&#160;</span><span class="window-dot green" aria-hidden="true">&#160;</span><span class="code-label">quick-start.cs</span></div><pre><code><span class="code-keyword">using</span> MD5Hash;
 
-<!--Features Section-->
-<section class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 mx-auto">
-                <h2 class="text-center text-md-left">Reasons Why People Love <span class="text-success">MD5</span></h2>
-                <div class="row feature-grid">
-                    <div class="col-sm-6">
-                        <div class="media">
-                            <div class="icon-box">
-                                <div class="icon-box-inner">
-                                    <span data-feather="check-circle" width="28" height="28"></span>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                Used by Thousands of Developers
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="media">
-                            <div class="icon-box">
-                                <div class="icon-box-inner">
-                                    <span data-feather="command" width="28" height="28"></span>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                Hash content using helper/extension methods
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="media">
-                            <div class="icon-box">
-                                <div class="icon-box-inner">
-                                    <span data-feather="feather" width="28" height="28"></span>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                SHA-256 and HMAC-SHA-256 for new integrity scenarios
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="media">
-                            <div class="icon-box">
-                                <div class="icon-box-inner">
-                                    <span data-feather="zap" width="28" height="28"></span>
-                                </div>
-                            </div>
-                            <div class="media-body">
-                                Available on NuGet
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<span class="code-type">string</span> checksum = <span class="code-string">"hello world"</span>.GetSHA256();
 
-<!--footer-->
-<footer class="py-4 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <ul class="list-inline">
-                    <li class="list-inline-item"><a href="https://www.nuget.org/packages/MD5">Test Drive</a></li>
-                    <li class="list-inline-item"><a href="https://github.com/oalexandrefreire/MD5#readme">API Docs</a></li>
-                    <li class="list-inline-item"><a href="https://github.com/oalexandrefreire/MD5/fork/">Fork MD5 on GitHub</a></li>
-                </ul>
+Console.WriteLine(checksum);
+<span class="code-comment">// b94d27b9934d3e08...</span></code></pre></div>
             </div>
-        </div>
-        <div class="row my-2">
-            <div class="col-md-4 mx-auto text-muted text-center small-xl">
-                &copy; 2026 MD5 - All Rights Reserved
-            </div>
-        </div>
-    </div>
-</footer>
+        </section>
 
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.7.3/feather.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-<script src="js/scripts.js"></script>
+        <section class="notice-section" aria-label="Aviso de segurança"><div class="container"><div class="security-notice"><div class="notice-icon" aria-hidden="true">!</div><div><strong>Escolha o algoritmo pelo objetivo</strong><p>MD5 não é criptografia e não deve ser usado para senhas. Use MD5 apenas quando precisar reproduzir um valor legado ou gerar um checksum compatível. Para novas integrações, prefira SHA-256 ou HMAC-SHA-256; para senhas, use <a href="#senhas">PasswordHash</a>.</p></div></div></div></section>
+
+        <div class="container docs-layout">
+            <aside class="docs-sidebar" aria-label="Nesta página"><p class="sidebar-title">Nesta página</p><nav><a href="#instalacao">Instalação</a><a href="#qual-metodo">Qual método usar?</a><a href="#hashes">Hashes de conteúdo</a><a href="#md5">MD5</a><a href="#sha256">SHA-256</a><a href="#hmac">HMAC-SHA-256</a><a href="#salt">MD5 com salt</a><a href="#senhas">Hash de senhas</a><a href="#encoding">EncodingType</a><a href="#api">Referência da API</a><a href="#faq">Perguntas frequentes</a></nav></aside>
+
+            <article class="documentation">
+                <section id="instalacao" class="doc-section" aria-labelledby="instalacao-title"><p class="eyebrow">Comece em poucos minutos</p><h2 id="instalacao-title">Instalação</h2><p>O pacote <strong>MD5</strong> está disponível no NuGet e funciona em projetos compatíveis com <code>netstandard2.0</code>. Instale-o no diretório do projeto e importe o namespace <code>MD5Hash</code>.</p><div class="code-card compact"><div class="code-card-top"><span class="code-label">.NET CLI</span><button class="copy-button" type="button" data-copy="dotnet add package MD5">Copiar</button></div><pre><code>dotnet add package MD5</code></pre></div><div class="code-card compact"><div class="code-card-top"><span class="code-label">Package Manager Console</span><button class="copy-button" type="button" data-copy="Install-Package MD5">Copiar</button></div><pre><code>Install-Package MD5</code></pre></div><p>Depois, adicione <code>using MD5Hash;</code> ao arquivo que usará a biblioteca.</p></section>
+
+                <section id="qual-metodo" class="doc-section" aria-labelledby="qual-metodo-title"><p class="eyebrow">Decisão rápida</p><h2 id="qual-metodo-title">Qual método devo usar?</h2><p>O melhor algoritmo depende do que você quer proteger ou comparar:</p><div class="use-case-grid"><div class="use-case"><span class="use-case-tag legacy">Compatibilidade</span><h3>MD5</h3><p>Reproduzir hashes de sistemas antigos ou checksums legados.</p><a href="#md5">Ver GetMD5 →</a></div><div class="use-case"><span class="use-case-tag integrity">Integridade</span><h3>SHA-256</h3><p>Comparar arquivos, payloads e impressões digitais de conteúdo.</p><a href="#sha256">Ver GetSHA256 →</a></div><div class="use-case"><span class="use-case-tag auth">Autenticidade</span><h3>HMAC-SHA-256</h3><p>Validar integridade usando uma chave secreta compartilhada.</p><a href="#hmac">Ver GetHMACSHA256 →</a></div><div class="use-case"><span class="use-case-tag password">Senhas</span><h3>PasswordHash</h3><p>Armazenar e verificar senhas sem guardar o texto original.</p><a href="#senhas">Ver PasswordHash →</a></div></div></section>
+
+                <section id="hashes" class="doc-section" aria-labelledby="hashes-title"><p class="eyebrow">API de conteúdo</p><h2 id="hashes-title">Gerando hashes de conteúdo</h2><p>Os métodos de extensão aceitam <code>string</code>, <code>byte[]</code>, objetos serializáveis e <code>Stream</code>. O resultado é uma string hexadecimal em letras minúsculas.</p></section>
+
+                <section id="md5" class="method-section" aria-labelledby="md5-title"><div class="method-heading"><span class="method-number">01</span><div><h2 id="md5-title"><code>GetMD5</code></h2><p>MD5 para compatibilidade e checksums legados.</p></div></div><p>Use <code>GetMD5</code> quando o sistema de destino já exige MD5 ou quando precisa manter compatibilidade com valores existentes. Para um helper sem extensão, use <code>Hash.Content</code>.</p><div class="code-card"><div class="code-card-top"><span class="code-label">String, bytes, objeto e stream</span><button class="copy-button" type="button" data-copy='using System.IO;\nusing System.Text;\nusing MD5Hash;\n\nstring fromString = "123".GetMD5();\nbyte[] bytes = Encoding.UTF8.GetBytes("Hello, World!");\nstring fromBytes = bytes.GetMD5();\nstring fromObject = new { Id = 1, Name = "Test" }.GetMD5();\nusing var stream = File.OpenRead("arquivo.zip");\nstring fromStream = stream.GetMD5();'>Copiar</button></div><pre><code><span class="code-keyword">using</span> System.IO;
+<span class="code-keyword">using</span> System.Text;
+<span class="code-keyword">using</span> MD5Hash;
+
+<span class="code-type">string</span> fromString = <span class="code-string">"123"</span>.GetMD5();
+<span class="code-type">byte[]</span> bytes = Encoding.UTF8.GetBytes(<span class="code-string">"Hello, World!"</span>);
+<span class="code-type">string</span> fromBytes = bytes.GetMD5();
+<span class="code-type">string</span> fromObject = <span class="code-keyword">new</span> { Id = <span class="code-number">1</span>, Name = <span class="code-string">"Test"</span> }.GetMD5();
+<span class="code-keyword">using var</span> stream = File.OpenRead(<span class="code-string">"arquivo.zip"</span>);
+<span class="code-type">string</span> fromStream = stream.GetMD5();</code></pre></div><p>Strings usam ASCII por padrão em <code>GetMD5(string)</code>. Para acentos, emojis ou outros caracteres fora de ASCII, informe <code>EncodingType.UTF8</code>:</p><div class="code-card compact"><pre><code><span class="code-type">string</span> hash = <span class="code-string">"Olá, mundo! 👋"</span>.GetMD5(EncodingType.UTF8);
+<span class="code-type">string</span> helper = Hash.Content(<span class="code-string">"123"</span>);</code></pre></div></section>
+
+                <section id="sha256" class="method-section" aria-labelledby="sha256-title"><div class="method-heading"><span class="method-number">02</span><div><h2 id="sha256-title"><code>GetSHA256</code></h2><p>SHA-256 para integridade e fingerprints.</p></div></div><p>Para novos checksums, SHA-256 é a escolha recomendada. O método produz 64 caracteres hexadecimais:</p><div class="code-card"><div class="code-card-top"><span class="code-label">Checksum de conteúdo</span><button class="copy-button" type="button" data-copy='string checksum = "hello world".GetSHA256();'>Copiar</button></div><pre><code><span class="code-type">string</span> checksum = <span class="code-string">"hello world"</span>.GetSHA256();
+<span class="code-comment">// b94d27b9934d3e08a52e52d7da7dabfa...</span></code></pre></div><p>Strings e objetos usam UTF-8 por padrão. Para arquivos grandes, passe o stream aberto; a posição atual será consumida durante a leitura.</p><div class="code-card compact"><pre><code><span class="code-keyword">using FileStream</span> file = File.OpenRead(<span class="code-string">"relatorio.pdf"</span>);
+<span class="code-type">string</span> checksum = file.GetSHA256();</code></pre></div></section>
+
+                <section id="hmac" class="method-section" aria-labelledby="hmac-title"><div class="method-heading"><span class="method-number">03</span><div><h2 id="hmac-title"><code>GetHMACSHA256</code></h2><p>Integridade com autenticação por chave secreta.</p></div></div><p>HMAC-SHA-256 combina o conteúdo com uma chave secreta. É útil quando quem recebe precisa verificar que a mensagem veio de uma parte que conhece a chave. Nunca exponha essa chave no código-fonte.</p><div class="code-card"><div class="code-card-top"><span class="code-label">Mensagem e chave</span><button class="copy-button" type="button" data-copy='string secretKey = "a-secret-key";\nstring signature = "hello world".GetHMACSHA256(secretKey);'>Copiar</button></div><pre><code><span class="code-type">string</span> secretKey = <span class="code-string">"a-secret-key"</span>;
+<span class="code-type">string</span> signature = <span class="code-string">"hello world"</span>.GetHMACSHA256(secretKey);</code></pre></div><p>Para bytes, passe conteúdo e chave como <code>byte[]</code>. Para objetos, a biblioteca serializa o objeto em JSON antes de calcular o HMAC.</p><div class="code-card compact"><pre><code><span class="code-type">byte[]</span> payload = Encoding.UTF8.GetBytes(<span class="code-string">"Hello, World!"</span>);
+<span class="code-type">byte[]</span> key = Encoding.UTF8.GetBytes(<span class="code-string">"a-secret-key"</span>);
+<span class="code-type">string</span> signature = payload.GetHMACSHA256(key);</code></pre></div></section>
+
+                <section id="salt" class="method-section" aria-labelledby="salt-title"><div class="method-heading"><span class="method-number">04</span><div><h2 id="salt-title"><code>GetMD5WithSalt</code></h2><p>MD5 com salt para compatibilidade histórica.</p></div></div><p>Este método existe para reproduzir o comportamento legado. Um salt muda o resultado, mas <strong>não transforma MD5 em algoritmo adequado para senhas</strong>. Para novas senhas, use <a href="#senhas">PasswordHash</a>.</p><div class="code-card compact"><pre><code><span class="code-type">string</span> hash = <span class="code-string">"hello world"</span>.GetMD5WithSalt(<span class="code-string">"randomSalt"</span>);
+<span class="code-type">string</span> objectHash = <span class="code-keyword">new</span> { Id = <span class="code-number">1</span> }.GetMD5WithSalt(<span class="code-string">"randomSalt"</span>);</code></pre></div><div class="compatibility-note"><strong>Detalhe de compatibilidade:</strong> strings e objetos calculam <code>salt + conteúdo</code>; arrays de bytes e streams calculam <code>conteúdo + salt</code>. Essa diferença é intencional para preservar hashes existentes.</div><div class="code-card compact"><pre><code><span class="code-type">byte[]</span> data = Encoding.UTF8.GetBytes(<span class="code-string">"Hello, World!"</span>);
+<span class="code-type">byte[]</span> salt = Encoding.UTF8.GetBytes(<span class="code-string">"randomSalt"</span>);
+<span class="code-type">string</span> hash = data.GetMD5WithSalt(salt);</code></pre></div></section>
+
+                <section id="senhas" class="doc-section password-section" aria-labelledby="senhas-title"><p class="eyebrow">Armazenamento de credenciais</p><h2 id="senhas-title">Hash de senhas com <code>PasswordHash</code></h2><p>Senhas não devem ser criptografadas para depois serem recuperadas. Gere um hash lento, armazene o valor retornado e, no login, use o método <code>Verify...</code> correspondente. Cada método cria um salt aleatório e devolve uma string autocontida com os parâmetros necessários para verificação.</p><div class="password-choice"><div><strong>Recomendação</strong><p>Comece com <code>HashArgon2</code> em novos sistemas quando o ambiente suportar Argon2id. Use PBKDF2 para ampla compatibilidade e bcrypt para interoperar com hashes bcrypt existentes.</p></div><span class="recommendation-badge">Argon2id</span></div><h3 id="pbkdf2">PBKDF2-HMAC-SHA256</h3><p>Opção compatível com várias plataformas. O padrão usa 600.000 iterações, salt de 16 bytes e hash de 32 bytes.</p><div class="code-card"><div class="code-card-top"><span class="code-label">Gerar e verificar</span><button class="copy-button" type="button" data-copy='string storedHash = PasswordHash.HashPBKDF2("minha senha");\nbool valid = PasswordHash.VerifyPBKDF2("minha senha", storedHash);'>Copiar</button></div><pre><code><span class="code-type">string</span> storedHash = PasswordHash.HashPBKDF2(<span class="code-string">"minha senha"</span>);
+<span class="code-type">bool</span> valid = PasswordHash.VerifyPBKDF2(<span class="code-string">"minha senha"</span>, storedHash);</code></pre></div><h3 id="bcrypt">bcrypt</h3><p>Útil quando a aplicação precisa ser compatível com o formato bcrypt. O fator de trabalho padrão é 12 e fica incorporado ao hash.</p><div class="code-card compact"><pre><code><span class="code-type">string</span> storedHash = PasswordHash.HashBCrypt(<span class="code-string">"minha senha"</span>);
+<span class="code-type">bool</span> valid = PasswordHash.VerifyBCrypt(<span class="code-string">"minha senha"</span>, storedHash);</code></pre></div><h3 id="argon2">Argon2id</h3><p>Recomendado para novos armazenamentos. O padrão usa 3 iterações, 65.536 KiB de memória, paralelismo 2, salt de 16 bytes e hash de 32 bytes.</p><div class="code-card compact"><pre><code><span class="code-type">string</span> storedHash = PasswordHash.HashArgon2(<span class="code-string">"minha senha"</span>);
+<span class="code-type">bool</span> valid = PasswordHash.VerifyArgon2(<span class="code-string">"minha senha"</span>, storedHash);
+
+<span class="code-comment">// Também é possível informar os parâmetros nomeados.</span>
+<span class="code-type">string</span> tunedHash = PasswordHash.HashArgon2(<span class="code-string">"minha senha"</span>, iterations: <span class="code-number">3</span>, memorySize: <span class="code-number">65536</span>, degreeOfParallelism: <span class="code-number">2</span>);</code></pre></div><div class="compatibility-note"><strong>Boa prática:</strong> armazene a string inteira retornada pela biblioteca e não compare hashes de senha manualmente. Ajuste os parâmetros com medições no hardware de produção.</div></section>
+
+                <section id="encoding" class="doc-section" aria-labelledby="encoding-title"><p class="eyebrow">Texto e bytes</p><h2 id="encoding-title">Escolhendo o <code>EncodingType</code></h2><p>Um hash é calculado sobre bytes. O mesmo texto pode produzir resultados diferentes com encodings diferentes. Use o enum quando precisar reproduzir o formato de outro sistema.</p><div class="table-wrap"><table><caption>Valores disponíveis em <code>EncodingType</code></caption><thead><tr><th>Valor</th><th>Encoding .NET</th><th>Quando considerar</th></tr></thead><tbody><tr><td><code>UTF8</code></td><td>UTF-8</td><td>Escolha recomendada para texto novo.</td></tr><tr><td><code>ASCII</code></td><td>ASCII</td><td>Compatibilidade com conteúdo estritamente ASCII.</td></tr><tr><td><code>UTF7</code></td><td>UTF-7</td><td>Somente para integrações legadas.</td></tr><tr><td><code>UTF32</code></td><td>UTF-32</td><td>Quando o destino exigir o formato.</td></tr><tr><td><code>Unicode</code></td><td>UTF-16 little-endian</td><td>Compatibilidade com aplicações UTF-16.</td></tr><tr><td><code>BigEndianUnicode</code></td><td>UTF-16 big-endian</td><td>Compatibilidade com protocolos específicos.</td></tr><tr><td><code>Default</code></td><td>Encoding padrão do ambiente</td><td>Evite para valores reproduzíveis entre máquinas.</td></tr></tbody></table></div><p>SHA-256 e HMAC-SHA-256 usam UTF-8 por padrão para strings e objetos. O MD5 legado mantém ASCII no overload de string e UTF-8 no overload de objeto.</p></section>
+
+                <section id="api" class="doc-section" aria-labelledby="api-title"><p class="eyebrow">Consulta rápida</p><h2 id="api-title">Referência da API</h2><div class="table-wrap"><table><caption>Métodos públicos disponíveis</caption><thead><tr><th>Método</th><th>Entradas</th><th>Uso indicado</th></tr></thead><tbody><tr><td><code>Hash.Content</code></td><td><code>string</code>, encoding opcional</td><td>Helper estático para MD5.</td></tr><tr><td><code>GetMD5</code></td><td>string, object, byte[], Stream</td><td>Compatibilidade e checksum legado.</td></tr><tr><td><code>GetSHA256</code></td><td>string, object, byte[], Stream</td><td>Integridade de conteúdo.</td></tr><tr><td><code>GetHMACSHA256</code></td><td>Conteúdo + chave</td><td>Integridade e autenticidade.</td></tr><tr><td><code>GetMD5WithSalt</code></td><td>Conteúdo + salt</td><td>Compatibilidade com MD5 salteado.</td></tr><tr><td><code>PasswordHash.HashPBKDF2</code> / <code>VerifyPBKDF2</code></td><td>Senha + hash armazenado</td><td>Senhas com ampla compatibilidade.</td></tr><tr><td><code>PasswordHash.HashBCrypt</code> / <code>VerifyBCrypt</code></td><td>Senha + hash armazenado</td><td>Interoperabilidade com bcrypt.</td></tr><tr><td><code>PasswordHash.HashArgon2</code> / <code>VerifyArgon2</code></td><td>Senha + hash armazenado</td><td>Novos sistemas com Argon2id.</td></tr></tbody></table></div></section>
+
+                <section id="faq" class="doc-section faq-section" aria-labelledby="faq-title"><p class="eyebrow">Dúvidas comuns</p><h2 id="faq-title">Perguntas frequentes</h2><details open><summary>MD5 é seguro para senhas?</summary><p>Não. MD5 é rápido demais e não foi projetado para proteger senhas. Use <code>PasswordHash</code> com Argon2id, PBKDF2 ou bcrypt.</p></details><details><summary>SHA-256 substitui HMAC-SHA-256?</summary><p>Não exatamente. SHA-256 gera um checksum público. HMAC-SHA-256 usa uma chave secreta e também permite verificar a autenticidade de uma mensagem.</p></details><details><summary>Posso salvar o resultado do hash de senha diretamente no banco?</summary><p>Sim. Salve a string completa retornada por <code>HashPBKDF2</code>, <code>HashBCrypt</code> ou <code>HashArgon2</code>; ela já contém o algoritmo e os parâmetros necessários para o método <code>Verify...</code>.</p></details><details><summary>O que acontece se eu passar uma senha incorreta?</summary><p>Os métodos <code>Verify...</code> retornam <code>false</code>. Uma senha nula gera <code>ArgumentNullException</code>, então valide a entrada da sua aplicação conforme a regra de negócio.</p></details></section>
+
+                <section class="next-step" aria-label="Próximos passos"><div><p class="eyebrow">Pronto para usar?</p><h2>Instale o pacote e gere seu primeiro hash.</h2><p>Consulte o código-fonte, abra uma issue ou instale a versão mais recente pelo NuGet.</p></div><div class="hero-actions"><a class="button button-primary" href="https://www.nuget.org/packages/MD5" target="_blank" rel="noopener">Abrir no NuGet ↗</a><a class="button button-secondary" href="https://github.com/oalexandrefreire/MD5" target="_blank" rel="noopener">Código no GitHub ↗</a></div></section>
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer"><div class="container footer-grid"><div><a class="brand" href="#inicio"><span class="brand-mark">#</span><span>MD5<span class="brand-suffix">.NET</span></span></a><p>Hashing simples para aplicações .NET.</p></div><div class="footer-links"><a href="https://github.com/oalexandrefreire/MD5" target="_blank" rel="noopener">GitHub</a><a href="https://www.nuget.org/packages/MD5" target="_blank" rel="noopener">NuGet</a><a href="https://github.com/oalexandrefreire/MD5/blob/main/README.md" target="_blank" rel="noopener">README</a></div></div><div class="container footer-bottom"><span>© 2026 MD5 para .NET</span><span>Licença MIT</span></div></footer>
+    <script src="js/scripts.js" defer></script>
 </body>
 </html>
