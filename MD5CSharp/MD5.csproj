@@ -4,20 +4,20 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Alexandre Freire</Authors>
     <Company>Alexandre Freire</Company>
-    <PackageTags>Hash, MD5, SHA256, HMAC-SHA256, MD5Hash, Checksum</PackageTags>
-    <Description>Generate MD5 hashes for compatibility and checksums, plus SHA-256 and HMAC-SHA-256 for new integrity scenarios, from strings, byte arrays, objects or streams. This package does not provide encryption or password hashing.</Description>
+    <PackageTags>Hash, MD5, SHA256, HMAC-SHA256, PBKDF2, bcrypt, Argon2, Password Hashing, MD5Hash, Checksum</PackageTags>
+    <Description>Generate MD5 hashes for compatibility and checksums, SHA-256 and HMAC-SHA-256 for integrity scenarios, plus PBKDF2, bcrypt and Argon2id for password hashing.</Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <ApplicationIcon>logo.ico</ApplicationIcon>
     <PackageIcon>logo.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/oalexandrefreire/MD5</RepositoryUrl>
-    <Version>2.3.0</Version>
+    <Version>2.4.0</Version>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>2.3.0</AssemblyVersion>
-    <FileVersion>2.3.0</FileVersion>
+    <AssemblyVersion>2.4.0</AssemblyVersion>
+    <FileVersion>2.4.0</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/oalexandrefreire/MD5</PackageProjectUrl>
-    <PackageReleaseNotes>Added SHA-256 and HMAC-SHA-256 APIs without changing existing MD5 signatures or behavior.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added PBKDF2, bcrypt and Argon2id password-hashing APIs without changing existing MD5, SHA-256 or HMAC-SHA-256 signatures or behavior.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,6 +33,8 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
+    <PackageReference Include="Konscious.Security.Cryptography.Argon2" Version="1.3.1" />
   </ItemGroup>
 
   <ItemGroup>

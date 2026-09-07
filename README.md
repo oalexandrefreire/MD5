@@ -42,7 +42,7 @@ string hash = myNumber.ToString().GetMD5();
 
 For new integrity scenarios, use the new `GetSHA256` and `GetHMACSHA256` methods. They are additional APIs and do not change the existing MD5 method signatures or their historical behavior.
 
-SHA-256 is appropriate for public checksums, fingerprints and content integrity. HMAC-SHA-256 is appropriate when integrity and authenticity depend on a shared secret key. HMAC is not a password-hashing function; use a password-specific KDF such as PBKDF2, bcrypt or Argon2 for passwords.
+SHA-256 is appropriate for public checksums, fingerprints and content integrity. HMAC-SHA-256 is appropriate when integrity and authenticity depend on a shared secret key. HMAC is not a password-hashing function; use the password-specific APIs below for passwords.
 
 The new methods support strings, byte arrays, objects and streams, just like the existing MD5 methods. String and object inputs use UTF-8 by default.
 
@@ -62,6 +62,25 @@ byte[] key = Encoding.UTF8.GetBytes("a-secret-key");
 string sha256 = payload.GetSHA256();
 string hmac = payload.GetHMACSHA256(key);
 ```
+
+## Password hashing: PBKDF2, bcrypt and Argon2id
+
+For password storage and authentication, use `PasswordHash`. These algorithms are deliberately separate from the legacy MD5 and salted-MD5 methods. Each `Hash...` method generates a random salt and returns a self-contained encoded value with the parameters required by its matching `Verify...` method.
+
+Argon2id is the preferred choice for new password storage when the deployment environment supports it. PBKDF2-HMAC-SHA256 is a broadly compatible alternative, and bcrypt is useful when compatibility with existing bcrypt hashes is required.
+
+```csharp
+string pbkdf2 = PasswordHash.HashPBKDF2("my password");
+bool pbkdf2Matches = PasswordHash.VerifyPBKDF2("my password", pbkdf2);
+
+string bcrypt = PasswordHash.HashBCrypt("my password");
+bool bcryptMatches = PasswordHash.VerifyBCrypt("my password", bcrypt);
+
+string argon2 = PasswordHash.HashArgon2("my password");
+bool argon2Matches = PasswordHash.VerifyArgon2("my password", argon2);
+```
+
+Store the returned encoded value and verify the supplied password against it; never store the plaintext password. Password hashing is intentionally slower than a checksum, so tune the parameters for the production hardware and periodically review them. The existing `GetMD5`, `GetMD5WithSalt`, `GetSHA256` and `GetHMACSHA256` contracts and behavior are unchanged.
 
 ## New Feature: MD5 with Salt
 
